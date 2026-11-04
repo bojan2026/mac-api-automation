@@ -1,0 +1,31 @@
+{
+  "name": "mac-api-automation",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/mac-api-automation/src",
+  "targets": {
+    "api-test": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "pnpm test:api",
+        "cwd": "apps/mac-api-automation"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec tsc --noEmit",
+        "cwd": "apps/mac-api-automation"
+      }
+    },
+    "report": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "pnpm report",
+        "cwd": "apps/mac-api-automation"
+      }
+    }
+  }
+}

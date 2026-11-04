@@ -1,0 +1,24 @@
+{
+  "name": "mac-api-automation",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=12.0.0"
+  },
+  "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "test:api": "node scripts/run-tests.mjs tests/api",
+    "test:report-redaction": "node --test tests/report-redaction.test.mjs",
+    "report": "node scripts/show-latest-report.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "25.9.3",
+    "dotenv": "^17.4.2",
+    "typescript": "6.0.3",
+    "zod": "^4.1.12"
+  }
+}

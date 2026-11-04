@@ -1,0 +1,26 @@
+{
+  "ks-admin": {
+    "username": "WE.KSD.MAC_KSAdmin-T",
+    "envKey": "KS_ADMIN_PASSWORD"
+  },
+  "mac-all": {
+    "username": "WE.KSD.MAC_All-Test",
+    "envKey": "MAC_ALL_PASSWORD"
+  },
+  "sg-schreiber": {
+    "username": "WE.KSD.MAC.SGschrei1",
+    "envKey": "SG_SCHREIBER_PASSWORD"
+  },
+  "waerme-schreiber": {
+    "username": "WE.KSD.MAC.Waermesc1",
+    "envKey": "WAERME_SCHREIBER_PASSWORD"
+  },
+  "tanke-schreiber": {
+    "username": "WE.KSD.MAC.Tankesch1",
+    "envKey": "TANKE_SCHREIBER_PASSWORD"
+  },
+  "superschnell-schreiber": {
+    "username": "WE.KSD.MAC.Supersch0",
+    "envKey": "SUPERSCHNELL_SCHREIBER_PASSWORD"
+  }
+}
