@@ -1,9 +1,3 @@
-# MAC API Automation
-
-Playwright API tests for the address lookup flow observed in the supplied HAR.
-The service layer covers address suggestions and address identity lookup.
-Customer, contract, and availability endpoints are outside this suite's scope.
-
 ## Setup
 
 ```sh
@@ -11,7 +5,9 @@ pnpm install
 ```
 
 Copy `.env.example` to `.env` and set `API_BASE_URL`. Address search test data
-is defined in `src/fixtures/address-search-fixtures.ts`.
+is defined in `src/fixtures/address-search-fixtures.ts`. The customer number
+search uses the test customer and system ID defined in
+`src/fixtures/customer-search-fixtures.ts`.
 
 If `API_BEARER_TOKEN` is set, the API fixture uses it directly. Otherwise it
 logs in to the MAC app in a browser using the configured service user, captures
