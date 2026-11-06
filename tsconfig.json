@@ -6,6 +6,12 @@
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "paths": {
+      "@auth/*": ["./src/auth/*"],
+      "@fixtures/*": ["./src/fixtures/*"],
+      "@schemas/*": ["./src/schemas/*"],
+      "@services/*": ["./src/services/*"]
+    },
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,

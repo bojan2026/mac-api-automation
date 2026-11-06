@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import { test, expect } from "@playwright/test";
-import { getApiBearerToken } from "../../src/auth/api-bearer-token.js";
+import { getApiBearerToken } from "@auth/api-bearer-token.js";
 
 for (const fails of [false, true]) {
     test(`synthetic login ${fails ? "failure" : "success"}`, async ({ browser }) => {

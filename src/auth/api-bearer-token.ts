@@ -1,5 +1,5 @@
 import type { Browser, Page, Request } from "@playwright/test";
-import users from "./users.json";
+import users from "@auth/users.json";
 
 interface CachedToken {
     value: string;

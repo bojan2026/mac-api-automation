@@ -10,10 +10,8 @@ Customer, contract, and availability endpoints are outside this suite's scope.
 pnpm install
 ```
 
-Copy `.env.example` to `.env` and set `API_BASE_URL` plus synthetic or approved
-test data. The address search test requires `ADDRESS_SEARCH_LOCATION`,
-`ADDRESS_SEARCH_ZIP_CODE`, and `ADDRESS_SEARCH_GROUP_FIELD`. The search test is
-skipped when its required inputs are missing.
+Copy `.env.example` to `.env` and set `API_BASE_URL`. Address search test data
+is defined in `src/fixtures/address-search-fixtures.ts`.
 
 If `API_BEARER_TOKEN` is set, the API fixture uses it directly. Otherwise it
 logs in to the MAC app in a browser using the configured service user, captures

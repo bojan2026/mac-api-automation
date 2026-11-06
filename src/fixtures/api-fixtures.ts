@@ -1,7 +1,7 @@
 import { request as playwrightRequest, test as base } from "@playwright/test";
 
-import { AddressApi } from "../services/address-api.js";
-import { getApiBearerToken } from "../auth/api-bearer-token.js";
+import { getApiBearerToken } from "@auth/api-bearer-token.js";
+import { AddressApi } from "@services/address-api.js";
 
 interface ApiFixtures {
     addressApi: AddressApi;
