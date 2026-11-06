@@ -1,5 +1,8 @@
 import type { Browser, Page, Request } from "@playwright/test";
 import users from "@auth/users.json";
+import { createLogger } from "../utils/logger.js";
+
+const logger = createLogger("ApiAuthentication");
 
 interface CachedToken {
     value: string;
@@ -175,21 +178,40 @@ export async function getApiBearerToken(
     baseURL: string | undefined
 ): Promise<string> {
     const configuredToken = process.env.API_BEARER_TOKEN?.trim();
-    if (configuredToken) return configuredToken;
+    if (configuredToken) {
+        logger.debug("Using the configured API token");
+        return configuredToken;
+    }
 
     if (cachedToken && cachedToken.expiresAt > Date.now()) {
+        logger.debug("Reusing the cached API token");
         return cachedToken.value;
     }
 
     if (!tokenRefresh) {
+        const startedAt = performance.now();
+        logger.info("Starting browser login to obtain an API token");
         tokenRefresh = loginAndCaptureToken(browser, baseURL)
             .then((token) => {
                 cachedToken = token;
+                logger.info(
+                    { durationMs: Math.round(performance.now() - startedAt) },
+                    "Browser login completed; API token captured"
+                );
                 return token;
+            })
+            .catch((error: unknown) => {
+                logger.error(
+                    { durationMs: Math.round(performance.now() - startedAt) },
+                    "Browser login failed"
+                );
+                throw error;
             })
             .finally(() => {
                 tokenRefresh = undefined;
             });
+    } else {
+        logger.debug("Waiting for the in-progress API token refresh");
     }
 
     return (await tokenRefresh).value;

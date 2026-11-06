@@ -18,6 +18,8 @@
     "@playwright/test": "^1.63.0",
     "@types/node": "25.9.3",
     "dotenv": "^17.4.2",
+    "pino": "^10.4.0",
+    "pino-pretty": "^13.2.0",
     "typescript": "6.0.3",
     "zod": "^4.1.12"
   }

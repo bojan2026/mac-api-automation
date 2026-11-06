@@ -54,6 +54,24 @@ report and test-artifact directories are removed when the run finishes.
 The observed API base URL is the Wien Energie test environment. Confirm the
 environment and use non-production test data before enabling live requests.
 
+## Logging
+
+Logging uses Pino, like `mac-test-automation`. Local runs show colored,
+timestamped output with a component context. With `CI=true` or `CI=1`
+(case-insensitive), logs are structured JSON instead.
+
+Set `LOG_LEVEL` in `.env` or CI variables to `trace`, `debug`, `info`, `warn`,
+`error`, `fatal`, or `silent`; the default is `info`. Invalid levels fail at
+startup. At `info`, logs show browser-login progress and API operation names,
+HTTP status codes, and elapsed milliseconds. At `debug`, they also show request
+starts and token-cache decisions. Non-success HTTP responses are warnings;
+transport and login failures are errors and still propagate to the tests.
+
+Logs intentionally omit usernames, passwords, tokens, URLs, query parameters,
+headers, bodies, and raw exception messages. Keep new log fields limited to
+non-sensitive operational metadata. Run `pnpm test:report-redaction` for
+login/report credential checks.
+
 ## Nx Integration
 
 This repository is structured to become a sibling app of
@@ -70,6 +88,7 @@ pnpm nx run mac-api-automation:report
 The Nx workspace owns dependency installation and its single `pnpm-lock.yaml`.
 Merge any missing dependencies from this repository's `package.json` into the
 workspace root `package.json` (the current schemas need `zod`), then run
-`pnpm install` from the workspace root. Do not carry the standalone lockfile
-into the Nx workspace. Keep `.env` local to this app and provide CI variables
-through the pipeline instead.
+`pnpm install` from the workspace root. Logging also needs `pino` and
+`pino-pretty` (already used by `mac-test-automation`). Do not carry the standalone
+lockfile into the Nx workspace. Keep `.env` local to this app and provide CI
+variables through the pipeline instead.

@@ -1,4 +1,8 @@
 import type { APIRequestContext, APIResponse } from "@playwright/test";
+import { createLogger } from "../utils/logger.js";
+import { logApiRequest } from "./log-api-request.js";
+
+const logger = createLogger("AddressApi");
 
 export interface AddressSearchParams {
     location: string;
@@ -27,7 +31,9 @@ export class AddressApi {
             ...(params.building !== undefined ? { building: params.building } : {})
         };
 
-        return this.request.get("/admintool/api/solr/olav/select", { params: query });
+        return logApiRequest(logger, "searchAddresses", () =>
+            this.request.get("/admintool/api/solr/olav/select", { params: query })
+        );
     }
 
     findAddressIdentity(params: AddressIdentityParams): Promise<APIResponse> {
@@ -38,9 +44,11 @@ export class AddressApi {
             ...(params.location !== undefined ? { location: params.location } : {})
         };
 
-        return this.request.get("/admintool/api/solr/olav/select/ident", {
-            params: query
-        });
+        return logApiRequest(logger, "findAddressIdentity", () =>
+            this.request.get("/admintool/api/solr/olav/select/ident", {
+                params: query
+            })
+        );
     }
 
 }
